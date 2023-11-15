@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.DerbyTenSevenDialect
+  datasource:
+    url: jdbc:postgresql://postgres:5432/money-transfer
+    username: money_transfer_app
+    password: r[ptt<+XF7;MpB3g
+    hikari:
+      maximum-pool-size: 5
+      driver-class-name: org.apache.derby.jdbc.EmbeddedDriver
+    driver-class-name: org.apache.derby.jdbc.EmbeddedDriver

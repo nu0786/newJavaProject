@@ -7,16 +7,23 @@ import com.bottomline.fm.moneytransfer.repository.spi.TransferRepositoryService;
 import com.bottomline.fm.moneytransfer.service.spi.AccountService;
 import com.bottomline.fm.moneytransfer.service.spi.TransferService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Collectors;
 
 @Service("transferService")
 public class TransferServiceImpl implements TransferService {
@@ -74,5 +81,15 @@ public class TransferServiceImpl implements TransferService {
     @Override
     public List<String> topSenderAccounts() {
         return transferRepositoryService.topSenderAccounts();
+    }
+
+    @Override
+    public List<Transfer> getAllTransfers(int page, int size) {
+        return transferRepositoryService.getAllTransfers(page, size);
+    }
+
+    @Override
+    public void create(Transfer transfer) {
+        transferRepositoryService.create(transfer);
     }
 }

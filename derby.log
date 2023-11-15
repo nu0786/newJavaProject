@@ -1,0 +1,29 @@
+----------------------------------------------------------------
+Thu Nov 16 01:21:51 IST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-018b-d48a-3aad-00000e18f588 
+on database directory /Users/nishantuppal/Documents/target/project/newJavaProject/derby-application-db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@6a6824be 
+Loaded from file:/Users/nishantuppal/.m2/repository/org/apache/derby/derby/10.15.2.0/derby-10.15.2.0.jar
+java.vendor=Eclipse Adoptium
+java.runtime.version=11.0.17+8
+user.dir=/Users/nishantuppal/Documents/target/project/newJavaProject
+os.name=Mac OS X
+os.arch=x86_64
+os.version=12.6
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Nov 16 01:21:53 IST 2023:
+Shutting down instance a816c00e-018b-d48a-3aad-00000e18f588 on database directory /Users/nishantuppal/Documents/target/project/newJavaProject/derby-application-db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@6a6824be 
+----------------------------------------------------------------
+Thu Nov 16 01:21:53 IST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance 4d6f406a-018b-d48a-3aad-00000e18f588 
+on database directory /Users/nishantuppal/Documents/target/project/newJavaProject/derby-application-db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@6a6824be 
+Loaded from file:/Users/nishantuppal/.m2/repository/org/apache/derby/derby/10.15.2.0/derby-10.15.2.0.jar
+java.vendor=Eclipse Adoptium
+java.runtime.version=11.0.17+8
+user.dir=/Users/nishantuppal/Documents/target/project/newJavaProject
+os.name=Mac OS X
+os.arch=x86_64
+os.version=12.6
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

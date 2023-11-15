@@ -37,4 +37,16 @@ public interface TransferService {
      * @return list of account numbers ordered by number of transfer they made as date of today
      */
     List<String> topSenderAccounts();
+
+    /**
+     * @param page and size
+     * @return list of all transfers ordered by valuedate they made as date of today
+     */
+    List<Transfer> getAllTransfers(int page, int size);
+
+    /**
+     * @param transfer
+     * @return create transfer data passed in api
+     */
+    void create(Transfer transfer);
 }

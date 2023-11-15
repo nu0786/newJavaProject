@@ -2,6 +2,9 @@ package com.bottomline.fm.moneytransfer.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 import java.time.Instant;
 

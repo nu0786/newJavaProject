@@ -14,16 +14,14 @@ import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TransferServiceIT extends IntegrationTestClass {
@@ -32,6 +30,8 @@ public class TransferServiceIT extends IntegrationTestClass {
 
     @Autowired
     protected TransferService transferService;
+    @Autowired
+    private TestRestTemplate restTemplate;
     @Autowired
     protected TransferRepository transferRepository;
     @Autowired
@@ -168,5 +168,15 @@ public class TransferServiceIT extends IntegrationTestClass {
         assertThat(topSenderAccounts.get(1)).isEqualTo(expected2Account.getAccountNumber());
         assertThat(topSenderAccounts.get(2)).isEqualTo(expected3Account.getAccountNumber());
         assertThat(topSenderAccounts.get(3)).isEqualTo(expected4Account.getAccountNumber());
+    }
+
+    @Test
+    public void getAllTransfers_ReturnsTransfersList() {
+
+        // Perform GET request
+        ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/api/transfer/list", String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
     }
 }

@@ -5,6 +5,9 @@ import com.bottomline.fm.moneytransfer.repository.entity.TransferEntity;
 import com.bottomline.fm.moneytransfer.repository.mapper.CycleAvoidingMappingContext;
 import com.bottomline.fm.moneytransfer.repository.mapper.TransferMapper;
 import com.bottomline.fm.moneytransfer.repository.spi.TransferRepositoryService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -52,5 +55,11 @@ public class TransferRepositoryServiceImpl implements TransferRepositoryService 
             topSendersAccounts.add(entry.getKey());
         }
         return topSendersAccounts;
+    }
+
+    @Override
+    public List<Transfer> getAllTransfers(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("valueDate").descending());
+        return transferRepository.findAllByOrderByValueDateDesc(pageable);
     }
 }
