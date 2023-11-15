@@ -1,0 +1,47 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="bottomline" id="tb_account_creation">
+        <createTable tableName="tb_account">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="tb_accountpkey"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="decimal" defaultValue="0" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_number" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_owner_full_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_owner_phone_number" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_owner_email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_owner_birthdate" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createSequence sequenceName="account_seq" incrementBy="50" startValue="10000000" minValue="10000000"/>
+    </changeSet>
+
+    <changeSet author="bottomline" id="uniq_tb_account_account_number">
+        <addUniqueConstraint columnNames="account_number" constraintName="uniq_tb_account_account_number"
+                             tableName="tb_account"/>
+    </changeSet>
+</databaseChangeLog>

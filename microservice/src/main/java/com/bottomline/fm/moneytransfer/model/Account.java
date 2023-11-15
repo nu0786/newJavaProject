@@ -3,6 +3,10 @@ package com.bottomline.fm.moneytransfer.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
@@ -12,6 +16,8 @@ public class Account {
     private String id;
     private String currency;
     private BigDecimal balance;
+
+    @Column(unique = true)
     private String accountNumber;
 
     private AccountOwner accountOwner;

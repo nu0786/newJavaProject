@@ -27,17 +27,13 @@ public class AccountRepositoryServiceImpl implements AccountRepositoryService {
     @Override
     public Account create(Account account) {
         try {
+
+            if (accountRepository.existsByAccountNumber(account.getAccountNumber())) {
+                throw new BadRequestException("Account number is already taken");
+            }
+
             return accountMapper.toModel(accountRepository.save(accountMapper.toEntity(account, new CycleAvoidingMappingContext())), new CycleAvoidingMappingContext());
         } catch (Exception e) {
-            if (e instanceof DataIntegrityViolationException
-                && e.getCause() instanceof ConstraintViolationException
-                && e.getCause().getCause() instanceof SQLIntegrityConstraintViolationException
-            ) {
-                SQLIntegrityConstraintViolationException cause = ((SQLIntegrityConstraintViolationException) e.getCause().getCause());
-                if (cause.getSQLState().equals("23505")) { // Duplicate key violation
-                    throw new BadRequestException("Account number is already taken");
-                }
-            }
             throw e;
         }
     }

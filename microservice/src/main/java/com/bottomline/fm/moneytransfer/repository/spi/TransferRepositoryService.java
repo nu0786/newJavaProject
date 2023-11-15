@@ -12,4 +12,6 @@ public interface TransferRepositoryService {
     Optional<Transfer> findById(Long id);
 
     List<String> topSenderAccounts();
+
+    List<Transfer> getAllTransfers(int page, int size);
 }
