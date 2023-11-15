@@ -1,0 +1,48 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="bottomline" id="tb_transfer_creation">
+        <createTable tableName="tb_transfer">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="tb_transferpkey"/>
+            </column>
+            <column name="value_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="from_account" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="to_account" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="decimal" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="label" type="varchar(32000)"/>
+            <column name="approved_by" type="varchar(255)"/>
+        </createTable>
+        <createSequence sequenceName="transfer_seq" incrementBy="50" startValue="10000000" minValue="10000000"/>
+    </changeSet>
+
+    <changeSet author="bottomline" id="fk_tb_transfer_tb_account_from">
+        <addForeignKeyConstraint baseColumnNames="from_account" baseTableName="tb_transfer"
+                                 constraintName="fk_tb_transfer_tb_account_from_account" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_account" />
+    </changeSet>
+    <changeSet author="bottomline" id="fk_tb_transfer_tb_account_to">
+        <addForeignKeyConstraint baseColumnNames="to_account" baseTableName="tb_transfer"
+                                 constraintName="fk_tb_transfer_tb_account_to_account" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_account" />
+    </changeSet>
+
+</databaseChangeLog>

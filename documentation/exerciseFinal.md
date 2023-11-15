@@ -1,0 +1,2 @@
+# Exercise Final
+Merge your branch on `master`, we want to see only **1 new commit** in the git history, with commit message "Bottomline interview complete: `YOUR_FIRSTNAME-YOUR_LASTNAME` (replace `YOUR_FIRSTNAME`, `YOUR_LASTNAME` with yours)
